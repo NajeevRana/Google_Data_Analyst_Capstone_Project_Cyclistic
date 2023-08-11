@@ -194,6 +194,7 @@ trek %>%
   ylab('Number of Rides') +
   scale_x_discrete(labels = month.abb, expand = expansion(add = c(0,0))) +
   scale_y_continuous(label = scales::label_comma())
+  
 ![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/080fcee8-029d-403c-a78d-ea019c86938b)
 
 Showed the average ride durations by day (Sunday-Saturday) for casual and member riders. Overall, casuals ride duration were about two times members each day of the week.
@@ -275,3 +276,6 @@ trek %>%
 
 ![Number of Rides by Week of Day and Bike Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/37c37ff3-e485-4d1a-bfdc-4047bee2875e)
 
+Act
+------------------------------------------------------------------------------------
+After visualization, I came up with three recommendations based on my analysis. Casual riders used the services for trips/enjoyment when they are not working whereas members used the Cyclistic bike share service for their daily transport for their work. The casual rider's duration is more than the member's. Casual riders used services more on Saturday and Sunday.
