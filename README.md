@@ -1,6 +1,7 @@
 To determine how the two types of customers - "Casual" and "Member" use the service differently I used 12 months of historical/Old data for a bike-share company. Throughout this project, I used Excel and Rstudio.
 
 Table of Content
+-----------------
 •	Ask
 •	Prepare
 •	Process
@@ -9,21 +10,21 @@ Table of Content
 •	Act
 
 Ask
-
+-----------------------------------------------------------------------------------------------
 Business Task: Determine how annual members and casual riders use cyclistic bikes differently?
 
 Prepare
-
+------------------------------------------------------------------------------------------------
 The data for this analysis is provided by Google for the project in the form of CSV files. The data does not contain any sensitive information and is public. The data used is also the most current available.
 
 Process
-
+-------------------------------------------------------------------------------------------------
 During this phase, The data was processed for analysis and I used the R programming language. I could use the SQL but I want to use the built-in feature of R to document(R markdown) and ggplot2 to visualize. Using Excel and Google Sheets are not many useful tools when working with thousands of rows of data elements.
 
 Processing steps: -
-
+--------------------
 Load packages used for analysis
-
+--------------------------------
 library(tidyverse)
 library(lubridate)
 library(ggplot2)
@@ -173,6 +174,7 @@ trek%>%
   scale_y_continuous(label = scales::label_comma()) +
   theme_bw()
 
+![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/c8218c58-04a9-4245-9c36-f77953efa34b)
 
 
 ##Visualized the number of rides by month and user type.
