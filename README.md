@@ -144,7 +144,7 @@ trek %>% mutate(week_of_days = wday(date,label = TRUE)) %>%
              ,average_duration = mean(trip_durattion)) %>%
   arrange(member_casual,week_of_days)
 
-
+Casual and member riders are beginning their trips to determine if there are any meaningful differences in their behavior that can be included in the marketing plan. We will look at trips by season.
 ##Generate seasonal trip chart by rider classification
 
 trek %>%
@@ -156,7 +156,9 @@ trek %>%
   scale_y_continuous(labels = scales::label_comma()) +
   theme_bw()
 
-  
+  ![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/c8218c58-04a9-4245-9c36-f77953efa34b)
+
+The number of rides for casual riders was much higher than for member riders on Saturday and Sunday. The number of member riders stayed mostly constant from Sunday – Saturday. It seemed like casual riders used the service more for leisure and member riders use it for daily transportation to and from work.
 
 ##Generate day of the week trip view and user type by rider classification
 
@@ -174,7 +176,7 @@ trek%>%
   scale_y_continuous(label = scales::label_comma()) +
   theme_bw()
 
-![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/c8218c58-04a9-4245-9c36-f77953efa34b)
+![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/d6c7c0c8-c9d0-4c81-9206-c8b4795ea9ea)
 
 
 ##Visualized the number of rides by month and user type.
@@ -192,6 +194,7 @@ trek %>%
   ylab('Number of Rides') +
   scale_x_discrete(labels = month.abb, expand = expansion(add = c(0,0))) +
   scale_y_continuous(label = scales::label_comma())
+![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/080fcee8-029d-403c-a78d-ea019c86938b)
 
 
 ##Visualized average duration by weekday and user type.
@@ -210,6 +213,9 @@ trek %>%
   scale_y_continuous(label = scales::label_comma()) +
   scale_x_discrete(expand = expansion(add = c(0, 0)))
 
+  ![Average Duration by Weekday and User Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/2dde9fdd-38c5-4af8-a198-cbd99db29cd6)
+
+
 ## visualized the number of rides by year and user type
 
 trek %>% 
@@ -226,6 +232,8 @@ trek %>%
   scale_y_continuous(label = scales::label_comma()) +
   scale_x_discrete(expand = expansion(add = c(0, 0))) +
   geom_text(aes(label = number_of_rides), hjust = .5, vjust = 0, position = position_dodge(.9))
+
+![Number Of Rides by Year and User Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/6226c9cf-e146-4d63-a705-dd6a1f3e26e6)
 
 ## visualized the number of rides by year and bike type
 
@@ -244,6 +252,9 @@ trek %>%
   scale_x_discrete(expand = expansion(add = c(0, 0))) +
   geom_text(aes(label = number_of_rides), hjust = .5, vjust = -.1, position = position_dodge(.9))
 
+  ![Number of Rides by Year and Bike Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/55478522-73fa-4876-909a-d46b202f1946)
+
+
 ##Visualized the number of rides by weekday and bike type
 
 trek %>% 
@@ -260,12 +271,5 @@ trek %>%
   scale_y_continuous(label = scales::label_comma()) +
   scale_x_discrete(expand = expansion(add = c(0, 0)))
 
+![Number of Rides by Week of Day and Bike Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/37c37ff3-e485-4d1a-bfdc-4047bee2875e)
 
-
-
-
-
-
-
-# Google_Data_Analyst_Capstone_Project_Cyclistic
-Cyclistic bike share analysis performed real-world tasks of a junior data analyst. Steps of the data analysis process: ask, prepare, process, analyze, share, and act.
