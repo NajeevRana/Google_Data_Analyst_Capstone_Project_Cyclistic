@@ -1,3 +1,29 @@
+To determine how the two types of customers - "Casual" and "Member" use the service differently I used 12 months of historical/Old data for a bike-share company. Throughout this project, I used Excel and Rstudio.
+
+Table of Content
+•	Ask
+•	Prepare
+•	Process
+•	Analyze
+•	Share
+•	Act
+
+Ask
+
+Business Task: Determine how annual members and casual riders use cyclistic bikes differently?
+
+Prepare
+
+The data for this analysis is provided by Google for the project in the form of CSV files. The data does not contain any sensitive information and is public. The data used is also the most current available.
+
+Process
+
+During this phase, The data was processed for analysis and I used the R programming language. I could use the SQL but I want to use the built-in feature of R to document(R markdown) and ggplot2 to visualize. Using Excel and Google Sheets are not many useful tools when working with thousands of rows of data elements.
+
+Processing steps: -
+
+Load packages used for analysis
+
 library(tidyverse)
 library(lubridate)
 library(ggplot2)
@@ -9,38 +35,44 @@ library(janitor)
 
 ## Load data into R for analysis
 
-df1<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202207-divvy-tripdata.csv")
-df2<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202208-divvy-tripdata.csv")
-df3<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202209-divvy-tripdata.csv")
-df4<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202210-divvy-tripdata.csv")
-df5<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202211-divvy-tripdata.csv")
-df6<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202212-divvy-tripdata.csv")
-df7<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202301-divvy-tripdata.csv")
-df8<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202302-divvy-tripdata.csv")
-df9<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202303-divvy-tripdata.csv")
-df10<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202304-divvy-tripdata.csv")
-df11<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202305-divvy-tripdata.csv")
-df12<- read.csv("C:/Users/Najeev/google-data-analytics-capstone-cyclistic-data/202306-divvy-tripdata.csv")
+df1<- read.csv("/google-data-analytics-capstone-cyclistic-data/202207-divvy-tripdata.csv")
+df2<- read.csv("/google-data-analytics-capstone-cyclistic-data/202208-divvy-tripdata.csv")
+df3<- read.csv("/google-data-analytics-capstone-cyclistic-data/202209-divvy-tripdata.csv")
+df4<- read.csv("/google-data-analytics-capstone-cyclistic-data/202210-divvy-tripdata.csv")
+df5<- read.csv("/google-data-analytics-capstone-cyclistic-data/202211-divvy-tripdata.csv")
+df6<- read.csv("/google-data-analytics-capstone-cyclistic-data/202212-divvy-tripdata.csv")
+df7<- read.csv("/google-data-analytics-capstone-cyclistic-data/202301-divvy-tripdata.csv")
+df8<- read.csv("/google-data-analytics-capstone-cyclistic-data/202302-divvy-tripdata.csv")
+df9<- read.csv("/google-data-analytics-capstone-cyclistic-data/202303-divvy-tripdata.csv")
+df10<- read.csv("/google-data-analytics-capstone-cyclistic-data/202304-divvy-tripdata.csv")
+df11<- read.csv("/google-data-analytics-capstone-cyclistic-data/202305-divvy-tripdata.csv")
+df12<- read.csv("/google-data-analytics-capstone-cyclistic-data/202306-divvy-tripdata.csv")
 
-#compare datasets columns
+Make sure all the files have the same number of columns and the same data type for each column before merging the data in one file else integration won't be possible.
+##compare datasets columns
+
 compare_df_cols(df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12)
 
+Once we check and find everything is in order, we can go ahead and integrate the files into one file/Dataset
 ##Bind Datasets
+
 trek<- rbind(df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12)
 
+Character and numeric data were found on the "start_station_id" and "end_station_id columns so remove those to improve the integrity.
 ## Removing "start_station_id" and "end_station_id" columns because both character and Numeric data enter in those columns
+
 trek<- trek %>%
   select(-c(start_station_id, end_station_id))
-
+  
+The start and End dates were in character format. We need to change that to a date-time format.
 ##Change the stated_at and ended_at datatype to date-time format.
+
 trek$started_at <- anytime(trek$started_at, tz="America/Chicago")
 trek$ended_at <- anytime(trek$ended_at, tz="America/Chicago")
 
 
-##added new column week_of_days
+##added few new columns "week_of_days", "date", "day", "month", "year", "trip_duration"
 trek<- mutate(trek,week_of_days = weekdays(started_at))
-
-##more column added "date","day","month",year","trip_duration"
 trek<- mutate(trek,date = as.Date(started_at))
 trek<-mutate(trek,day = format(started_at,"%d"))
 trek<- mutate(trek,month= format(started_at,"%m"))
@@ -84,17 +116,20 @@ filter(trek,trip_durattion<0)
 ##remove rows where trip_durattion is less than 0
 trek<-subset(trek,trip_durattion>0)
 
-##check the data for better understanding
+##check the data for a better understanding
 glimpse(trek)
 
 ##Analyze the data
-## statistical summary of data
+## Statistical summary of data
 summary(trek$trip_durattion)
+
+Min.    1st Qu.   Median    Mean     3rd Qu.     Max. 
+0.02     5.50     9.70      15.33    17.28      32035.45 
 
 ##Arrange week of days in order
 trek$week_of_days<- ordered(trek$week_of_days,levels=c("Sunday","Monday","Tuesday","Wednesday","Thrusday","Friday","Saturday"))
 
-##Compare mean,median,max ride duration in minutes for members and casual users 
+##Compare mean, median, max ride duration in minutes for members and casual users 
 
 aggregate(trek$trip_durattion ~ trek$member_casual + trek$rideable_type,FUN = mean)
 aggregate(trek$trip_durattion ~ trek$member_casual + trek$rideable_type,FUN= median)
@@ -108,6 +143,7 @@ trek %>% mutate(week_of_days = wday(date,label = TRUE)) %>%
              ,average_duration = mean(trip_durattion)) %>%
   arrange(member_casual,week_of_days)
 
+
 ##Generate seasonal trip chart by rider classification
 
 trek %>%
@@ -119,7 +155,9 @@ trek %>%
   scale_y_continuous(labels = scales::label_comma()) +
   theme_bw()
 
-##Generate day of week trip view and user type by rider classification
+  
+
+##Generate day of the week trip view and user type by rider classification
 
 trek%>%
   ggplot(aes(x= wday(date,label=TRUE),fill = member_casual))+
@@ -134,6 +172,7 @@ trek%>%
   ylab('Number of Rides') +
   scale_y_continuous(label = scales::label_comma()) +
   theme_bw()
+
 
 
 ##Visualized the number of rides by month and user type.
