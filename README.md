@@ -1,3 +1,7 @@
+Cyclistic-Case-Study
+--------------------------------------------------------------------------------------
+Google Data Analytics Professional Certificate CAPSTONE Project
+---------------------------------------------------------------
 To determine how the two types of customers - "Casual" and "Member" use the service differently I used 12 months of historical/Old data for a bike-share company. Throughout this project, I used Excel and Rstudio.
 
 Table of Content
