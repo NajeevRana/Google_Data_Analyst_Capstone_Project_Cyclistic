@@ -196,7 +196,7 @@ trek %>%
   scale_y_continuous(label = scales::label_comma())
 ![image](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/080fcee8-029d-403c-a78d-ea019c86938b)
 
-
+Showed the average ride durations by day (Sunday-Saturday) for casual and member riders. Overall, casuals ride duration were about two times members each day of the week.
 ##Visualized average duration by weekday and user type.
 
 trek %>% 
@@ -215,8 +215,8 @@ trek %>%
 
   ![Average Duration by Weekday and User Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/2dde9fdd-38c5-4af8-a198-cbd99db29cd6)
 
-
-## visualized the number of rides by year and user type
+Showed the number of rides in 2023 was 2238959 for casual and 3534116 member riders totaling 5,773,075. There was a difference of 1295157 rides between casual and member riders. Therefore, casual riders were aware of the Cyclistic bike-sharing program and used it for their daily transportation needs too. This discovery showed that there is an untapped population of casual riders for Cyclistic to expand its membership base and facilitate future growth.
+## Visualized the number of rides by year and user type
 
 trek %>% 
   mutate(year = "2023") %>% 
@@ -235,7 +235,9 @@ trek %>%
 
 ![Number Of Rides by Year and User Type](https://github.com/NajeevRana/Google_Data_Analyst_Capstone_Project_Cyclistic/assets/140980104/6226c9cf-e146-4d63-a705-dd6a1f3e26e6)
 
-## visualized the number of rides by year and bike type
+
+Showed the number of rides in 2023 by bike type was 2492097 (classic bike), 138854 (docked bike), and 3142124 (electric bikes) for casual and member riders. Both casual and member riders prefer classic bikes.
+## Visualized the number of rides by year and bike type
 
 trek %>% 
   mutate(year = "2023") %>% 
